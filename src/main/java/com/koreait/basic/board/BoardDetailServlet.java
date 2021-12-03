@@ -19,10 +19,10 @@ public class BoardDetailServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 
-        int ibaord = Utils.parseStringToInt(req.getParameter("iboard"),0);
+        int iboard = Utils.parseStringToInt(req.getParameter("iboard"),0);
 
         BoardDTO dto = new BoardDTO();
-        dto.setIboard(ibaord);
+        dto.setIboard(iboard);
 
         BoardVO data = BoardDAO.selBoardDetail(dto);
 //        if(dto.getIboard() == data.getIboard() || dto == null){

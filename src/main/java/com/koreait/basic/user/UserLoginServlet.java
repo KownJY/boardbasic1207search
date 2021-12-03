@@ -40,14 +40,21 @@ public class UserLoginServlet extends HttpServlet {
                 hs.setAttribute("loginUser", lr.getLoginUser());
                 //이동하는 부분
                 res.sendRedirect("/board/list");
-                break;
+                return;
             default:
-                break;
+                String err = null;
+                switch (lr.getResult()){
+                    case 0 : err = "로그인에 실패.";
+                        break;
+                    case 2: err ="아이디를 확인해주세요";
+                        break;
+                    case 3: err="비밀번호 확인해주세여.";
+                        break;
+                }
+                req.setAttribute("err",err);
+                doGet(req,res);
+                return;
         }
-
-        System.out.println("result : " + lr.getResult());
-        System.out.println("loginUSer : " + lr.getLoginUser());
-
 
     }
 }
