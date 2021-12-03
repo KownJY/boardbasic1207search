@@ -20,7 +20,7 @@ public class UserLoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         Utils.displayView("로그인", "user/login", req, res);
     }
-
+//
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String uid = req.getParameter("uid");

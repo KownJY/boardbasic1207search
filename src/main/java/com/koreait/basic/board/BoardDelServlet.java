@@ -29,12 +29,20 @@ public class BoardDelServlet extends HttpServlet {
 
         int result= BoardDAO.delBoard(entity);
 
-        if(result == 0){
-            req.setAttribute("err","로그인이 필요합니다.....");
-            req.getRequestDispatcher("/board/detail?iboard =" + iboard).forward(req,res);
-            return;
-        }
+//        if(result == 0){
+//            req.setAttribute("err","로그인이 필요합니다.....");
+//            req.getRequestDispatcher("/board/detail?iboard =" + iboard).forward(req,res);
+//            return;
+//        }
 
+        switch (result){
+            case 1: res.sendRedirect("/board/list");
+            return;
+            default:
+                req.setAttribute("err","글 삭제를 실패");
+                req.getRequestDispatcher("/board/detail?iboard=" + iboard).forward(req,res);
+                break;
+        }
 
         res.sendRedirect("/board/list");
 
