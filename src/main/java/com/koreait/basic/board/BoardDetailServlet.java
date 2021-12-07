@@ -25,11 +25,7 @@ public class BoardDetailServlet extends HttpServlet {
         dto.setIboard(iboard);
 
         BoardVO data = BoardDAO.selBoardDetail(dto);
-//        if(dto.getIboard() == data.getIboard() || dto == null){
-//
-//           data = BoardDAO.updBoardHitUp(dto);
-//        }
-//
+
         if(Utils.getLoginUserPk(req) != data.getWriter()){
              BoardDAO.updBoardHitUp(dto);
         }

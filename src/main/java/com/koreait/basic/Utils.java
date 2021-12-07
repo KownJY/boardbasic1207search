@@ -21,28 +21,36 @@ public class Utils {
     }
 
     public static int getParameterInt(HttpServletRequest req, String key) {
+//        String val = req.getParameter(key);
+//        return parseStringToInt(val, 0);
+
+        return getParameterInt(req, key, 0);
+    }
+
+    public static int getParameterInt(HttpServletRequest req, String key, int defval) {
         String val = req.getParameter(key);
-        return parseStringToInt(val, 0);
+        return parseStringToInt(val, defval);
     }
 
     public static int parseStringToInt(String val, int defVal) {
         try {
             return Integer.parseInt(val);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         return defVal;
     }
 
-    public static int getLoginUserPk(HttpServletRequest req){
+    public static int getLoginUserPk(HttpServletRequest req) {
 
         UserEntity loginUser = getLoginUser(req);
-        if(loginUser == null){
+        if (loginUser == null) {
             return 0;
         }
         return loginUser.getIuser();
 
     }
 
-    public static UserEntity getLoginUser(HttpServletRequest req){
+    public static UserEntity getLoginUser(HttpServletRequest req) {
         HttpSession session = req.getSession();
         return (UserEntity) session.getAttribute("loginUser");
     }
